@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/kemar1997/DiscordBerry_NodeJS#readme",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "discord.js": "^11.2.1",
-    "discord.js-commando": "^0.9.0"
+    "discord.js-commando": "^0.9.0",
+    "querystring": "^0.2.0",
+    "snekfetch": "^3.4.1"
   }
 }

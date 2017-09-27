@@ -4,6 +4,9 @@ const client = new commando.Client({
 });
 const clientSettings = require('./clientsettings.json');
 const jokes = require('./jokes.json');
+const cheerio = require('cheerio'),
+    snekfetch = require('snekfetch'),
+    querystring = require('querystring');
 
 var resArray = [jokes.j1, jokes.j2, jokes.j3, jokes.j4, jokes.j5, jokes.j6, jokes.j7, jokes.j8, jokes.j9];
 
@@ -21,6 +24,35 @@ client.registry.registerGroup('documentation', 'Documentation');
 client.registry.registerGroup('reply', 'Reply');
 client.registry.registerDefaults();
 client.registry.registerCommandsIn(__dirname + '/commands');
+
+client.on('message', (msg) => {
+	async function googleCommand(msg, args) {
+		let searchMessage = await msg.reply('Searching... Sec.');
+	        let searchUrl = `www.google.com/search?q=${encodeURIComponent(msg.content)}`;
+		 // We will now use snekfetch to crawl Google.com. Snekfetch uses promises so we will
+  		 // utilize that for our try/catch block.
+  		 return snekfetch.get(searchUrl).then((result) => {
+
+      			// Cheerio lets us parse the HTML on our google result to grab the URL.
+      			let $ = cheerio.load(result.text);
+
+      			// This is allowing us to grab the URL from within the instance of the page (HTML)
+      			let googleData = $('.r').first().find('a').first().attr('href');
+ 
+      			// Now that we have our data from Google, we can send it to the channel.
+      			googleData = querystring.parse(googleData.replace('/url?', ''));
+      			searchMessage.edit(`Result found!\n${googleData.q}`);
+
+  			// If no results are found, we catch it and return 'No results are found!'
+ 		 }).catch((err) => {
+    			 searchMessage.edit('No results found!');
+ 		 });
+	}
+
+	if (msg.author.bot) return;
+
+	googleCommand();
+});
 
 client.on('message', (msg) => {
 
