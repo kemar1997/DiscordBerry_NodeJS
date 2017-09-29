@@ -51,10 +51,20 @@ client.on('message', (msg) => {
 
 	if (msg.author.bot) return;
 
-	const swearWords = ['darn', 'shucks', 'frak', 'shite'];
+	const swearWords = ['darn', 'shucks', 'frak', 'shite', 'Darn', 'Shucks', 'Frak', 'Shite'];
 	
 	if ( swearWords.some(word => msg.content.includes(word) ) ) {
 		msg.reply("Oh no you said a bad word!!!");
+	}
+	
+	// A random response generator acting like an 8ball
+	const responses = ['yes', 'no', 'maybe', 'okay', 'sure', 'ask me later', 'naw'];
+	
+	if ( msg.content.startsWith('==8ball')) {
+		msg.channel.send(`${responses[Math.floor(Math.random()
+		* responses.length)]}`);
+		
+		console.log("An 8ball response has been sent in discord!");
 	}
 });
 
