@@ -26,7 +26,7 @@ client.registry.registerDefaults();
 client.registry.registerCommandsIn(__dirname + '/commands');
 
 client.on('message', (msg) => {
-	async function googleCommand(msg, args) {
+	/* async function googleCommand(msg, args) {
 		let searchMessage = await msg.reply('Searching... Sec.');
 	        let searchUrl = `www.google.com/search?q=${encodeURIComponent(msg.content)}`;
 		 // We will now use snekfetch to crawl Google.com. Snekfetch uses promises so we will
@@ -47,11 +47,15 @@ client.on('message', (msg) => {
  		 }).catch((err) => {
     			 searchMessage.edit('No results found!');
  		 });
-	}
+	} */
 
 	if (msg.author.bot) return;
 
-	googleCommand();
+	const swearWords = ['darn', 'shucks', 'frak', 'shite'];
+	
+	if ( swearWords.some(word => msg.content.includes(word) ) ) {
+		msg.reply("Oh no you said a bad word!!!");
+	}
 });
 
 client.on('message', (msg) => {
