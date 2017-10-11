@@ -1,3 +1,5 @@
 {
-	"msg": "Hello, I am DiscordBerry and I am Kemar's creation. I am being built with NodeJS while being run on a Raspberry Pi 3. Hence the clever name of 'DiscordBerry'. I am a project being worked on so bare with me if I tend to be annoying sometimes."
+	"msg": "Hello, I am DiscordBerry and I am Kemar's creation. I am being built with NodeJS while being run on a Raspberry Pi 3. Hence the clever name of 'DiscordBerry'. I am a project being worked on so bare with me if I tend to be annoying sometimes.",
+
+	"cmd": "Available Commands: !doc, !cmdlist, !reply, !embed, !hello, !ping, !prefix, !help. (More to come!)"
 }

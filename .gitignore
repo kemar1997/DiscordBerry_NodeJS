@@ -1,3 +1,4 @@
 # Settings that dont need to be uploaded
 clientsettings.json
 package-lock.json
+commands/documentation/.cmdlist.js.swp
