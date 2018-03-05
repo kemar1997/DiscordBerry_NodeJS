@@ -122,4 +122,5 @@ client.on('guildMemberAdd', member => {
 	member.guild.defaultChannel.send(`Welcome to the server, ${member}!`);
 });
 
+// Token belongs here
 client.login(clientSettings.token);
