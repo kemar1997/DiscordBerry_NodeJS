@@ -1,5 +1,6 @@
 const commando = require('discord.js-commando');
 const client = new commando.Client({
+	// ID goes here
 	owner: '276233346286092291'
 });
 const clientSettings = require('./clientsettings.json');
